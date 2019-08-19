@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Invoices API" do
   it "sends a list of invoices" do
-    create_list(:invoice, 3, merchant: create(:merchant))
+    create_list(:invoice, 3, merchant: create(:merchant), customer: create(:customer))
 
     get '/api/v1/invoices'
 
@@ -14,7 +14,7 @@ describe "Invoices API" do
   end
 
   it "can get one invoice by its id" do
-    id = create(:invoice, merchant: create(:merchant)).id
+    id = create(:invoice, merchant: create(:merchant), customer: create(:customer)).id
 
     get "/api/v1/invoices/#{id}"
 
